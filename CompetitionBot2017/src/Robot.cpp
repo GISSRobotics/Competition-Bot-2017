@@ -22,6 +22,7 @@ using namespace frc;
 class Robot: public frc::IterativeRobot {
 public:
 
+	//Setup camera
 	static void CVThread() {
 		cs::UsbCamera visionCam = CameraServer::GetInstance()->StartAutomaticCapture(0);
 		CameraServer::GetInstance()->StartAutomaticCapture(1);
@@ -38,6 +39,7 @@ public:
 		}*/
 	}
 
+	//Update camera
 	static void VisionThread() {
 		cs::UsbCamera visionCam = CameraServer::GetInstance()->StartAutomaticCapture(1);
 		CameraServer::GetInstance()->StartAutomaticCapture(0);
@@ -88,6 +90,7 @@ public:
 
 	}
 
+	//Initializes drive station variables, and sends it to Dashboard
 	void RobotInit() override {
 		autoChooser.AddDefault("Red Left", new AutonomousCommand(0));
 		autoChooser.AddObject("Red Center", new AutonomousCommand(1));
@@ -113,28 +116,36 @@ public:
 		//}
 	}
 
+	//What happens while disabled
 	void DisabledPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
 	}
 
+	//Begin autonomous
 	void AutonomousInit() override {
 		autonomousCommand.reset(autoChooser.GetSelected());
 		autonomousCommand->Start();
 	}
 
+	//Updates during autonomous
 	void AutonomousPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
 	}
 
+	//Begin teleop
 	void TeleopInit() override {
+		//Turn off autonomous
 		if (autonomousCommand.get() != nullptr) {
 			autonomousCommand->Cancel();
 		}
+		//Begin driving with joystick
 		driveWithJoystick.reset(new DriveWithJoystick());
 		driveWithJoystick->Start();
 		pdp = new PowerDistributionPanel(0);
 	}
 
+	//Updates during teleop
+	//Updates gear sleeve and dashboard with new data
 	void TeleopPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
 
@@ -159,6 +170,7 @@ public:
 		//SmartDashboard::PutNumber("Current 12", current12);
 	}
 
+	//Updates during test mode
 	void TestPeriodic() override {
 		frc::LiveWindow::GetInstance()->Run();
 	}
