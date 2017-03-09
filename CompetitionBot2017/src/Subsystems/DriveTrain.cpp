@@ -15,8 +15,8 @@ void DriveTrain::Drive(double acceleration, double steering) {
 		leftEncoder = new frc::Encoder(DRIVE_ENCODER_LA, DRIVE_ENCODER_LB);
 		rightEncoder = new frc::Encoder(DRIVE_ENCODER_RA, DRIVE_ENCODER_RB);
 		gyro = new frc::ADXRS450_Gyro();
-		leftEncoder->SetDistancePerPulse(6*3.14159);
-		rightEncoder->SetDistancePerPulse(6*3.14159);
+		leftEncoder->SetDistancePerPulse(6*pi);
+		rightEncoder->SetDistancePerPulse(6*pi);
 		leftEncoder->SetReverseDirection(true);
 		leftEncoder->SetSamplesToAverage(7);
 		rightEncoder->SetSamplesToAverage(7);
