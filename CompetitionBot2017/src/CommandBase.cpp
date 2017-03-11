@@ -1,6 +1,6 @@
-#include "CommandBase.h"
+#include "CommandBase.h" //we tell the program that in this code we are gonna use the data from another document
 
-#include <Commands/Scheduler.h>
+#include <Commands/Scheduler.h> // we show the location of the document where the commands exists already
 
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/GearSleeve.h"
