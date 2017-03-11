@@ -1,9 +1,0 @@
-DriveByDistance(forward, left)       - Gets robot to a point relative to its current position at an appropriate speed
-DriveByTime(left, right, time)       - Robot drives with manual motor speeds for specified time
-DriveToPoint(x, y, o)                - Gets robot to a particular point on the field, ending with specified orientation, using appropriate speed
-SetStartPoition(x, y, o)             - Specifies robot's starting position
-ChooseStartPosition(alliance, team)  - SetStartPoition based on pre-set coordinates
-FinalizeGearPosition()               - Drives to final position to place gear
-PlaceGear()                          - Places gear (then reset?)
-FinalizeRopePosition()               - Drives to final position to climb rope (stops when winch grabs rope?)
-ClimbRope()                          - Climbs rope steadily (use feedback loop)
