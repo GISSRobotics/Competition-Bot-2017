@@ -1,0 +1,36 @@
+Sensors
+=======
+Chassis
+	Camera x2? x3?
+	Gyroscope
+	Ultrasonic Sensor
+	Encoders x2? x3?
+Gear Manipulator
+	IR Sensor x1? x2?
+Climber
+
+Inputs
+======
+Chassis
+	Collision Detector? x1? x2? x4?
+Gear Manipulator
+	Agitator Limit x2?
+Climber
+
+Actuators
+=========
+Chassis
+	Motor Controller x4
+	Servo?
+Gear Manipulator
+	Agitator Motor (Pneumatic?)
+	Placement Arm 
+Climber
+	Climbing Motor
+
+Outputs
+=======
+Chassis
+	RSL
+Gear Manipulator
+Climber
