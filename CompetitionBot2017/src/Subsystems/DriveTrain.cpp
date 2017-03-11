@@ -10,6 +10,8 @@ void DriveTrain::InitDefaultCommand() {
 }
 
 void DriveTrain::Drive(double acceleration, double steering) {
+
+	//If not defined, define 'Drive'
 	if (!definedYet) {
 		driveBase = new frc::RobotDrive(DRIVE_MOTOR_LF, DRIVE_MOTOR_LR, DRIVE_MOTOR_RF, DRIVE_MOTOR_RR);
 		leftEncoder = new frc::Encoder(DRIVE_ENCODER_LA, DRIVE_ENCODER_LB);
@@ -23,9 +25,11 @@ void DriveTrain::Drive(double acceleration, double steering) {
 
 		definedYet = true;
 	}
+	//Reverse controls if true
 	if (controlsSwapped) {
 		acceleration = -acceleration;
 	}
+	//Update the dashboard variables
 	frc::SmartDashboard::PutNumber("Acc", acceleration);
 	frc::SmartDashboard::PutNumber("Steer", steering);
 	driveBase->ArcadeDrive(acceleration, steering);
@@ -38,19 +42,21 @@ void DriveTrain::Drive(double acceleration, double steering) {
 	frc::SmartDashboard::PutNumber("Gyro (Radians)", gyro->GetAngle());
 }
 
+//This inverts controls and updates the dashboard with the new conditions
 void DriveTrain::SwapControls() {
 	controlsSwapped = !controlsSwapped;
 	frc::SmartDashboard::PutBoolean("Controls Swapped?", controlsSwapped);
 }
 
+//Return encoder average (Aproximate distance)
 double DriveTrain::GetEncoderAverageDistance() {
 	return (((double)leftEncoder->GetRaw()/1440)*6*pi+((double)rightEncoder->GetRaw()/1440)*6*pi)/2;
 }
-
+//Return current angle
 double DriveTrain::GetGyroAngle() {
 	return gyro->GetAngle();
 }
-
+//Reset both bools
 void DriveTrain::Reset() {
 	controlsSwapped = false;
 	isInUse = false;

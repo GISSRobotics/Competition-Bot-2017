@@ -13,7 +13,7 @@ std::unique_ptr<GearSleeve> CommandBase::gearsleeve = std::make_unique<GearSleev
 std::unique_ptr<Winch> CommandBase::winch = std::make_unique<Winch>();
 
 std::unique_ptr<OI> CommandBase::oi = std::make_unique<OI>();
-
+//Activates named command
 CommandBase::CommandBase(const std::string &name) :
 		frc::Command(name) {
 
