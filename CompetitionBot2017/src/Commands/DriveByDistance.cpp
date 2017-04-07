@@ -17,10 +17,10 @@ void DriveByDistance::Initialize() {
 void DriveByDistance::Execute() {
 	if (drivetrain->GetEncoderAverageDistance() < encoderTarget) {//starts using the encoder to go the target distance
 		drivetrain->controlsSwapped = false;// the controls in drivetrain are not inverted
-		if (inches > 0) {// 
-			drivetrain->Drive(0.5, 0.2);//sets the speed 
+		if (inches > 0) {//
+			drivetrain->Drive(0.55, 0.3);//sets the speed
 		} else {
-			drivetrain->Drive(-0.5, 0.0);//same thing
+			drivetrain->Drive(-0.55, 0.3);//same thing
 		}
 	} else {
 		drivetrain->Drive(0.0, 0.0);//once again same thing

@@ -8,6 +8,7 @@ PlaceGear::PlaceGear() {
 
 // Called just before this Command runs the first time
 void PlaceGear::Initialize() {
+	drivetrain->isTargetting = true;
 	if (drivetrain->targetFound&&drivetrain->targetRange<5.0) {
 		drivetrain->isInUse = true;
 		gearsleeve->Raise();
@@ -31,6 +32,7 @@ bool PlaceGear::IsFinished() {
 
 // Called once after isFinished returns true
 void PlaceGear::End() {
+	drivetrain->isTargetting = false;
 	drivetrain->isInUse = false;
 }
 

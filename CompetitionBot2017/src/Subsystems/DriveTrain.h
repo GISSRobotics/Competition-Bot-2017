@@ -16,11 +16,12 @@ private:
 	frc::Encoder* rightEncoder;
 	frc::ADXRS450_Gyro* gyro;
 public:
-	bool controlsSwapped = false;
-	bool isInUse = false;
-	bool targetFound = false;
-	double targetRange = 0.0;
-	double targetCenter = 0.0;
+	volatile bool controlsSwapped = false;
+	volatile bool isInUse = false;
+	volatile bool targetFound = false;
+	volatile bool isTargetting = false;
+	volatile double targetRange = 0.0;
+	volatile double targetCenter = 0.0;
 	DriveTrain();
 	void InitDefaultCommand();
 	void Drive(double acceleration, double steering);

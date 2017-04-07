@@ -15,7 +15,7 @@ void DriveWithJoystick::Initialize() {
 void DriveWithJoystick::Execute() {
 	Joystick* stick = oi->GetJoystick();
 	double sensitivity = (stick->GetRawAxis(3)-1)/2;
-	if (std::abs(stick->GetRawAxis(0))>0.01||std::abs(stick->GetRawAxis(2))>0.01) {
+	if (std::abs(stick->GetRawAxis(1))>=0.01||std::abs(stick->GetRawAxis(0))>=0.01) {
 		drivetrain->isInUse = false;
 		drivetrain->Drive(stick->GetRawAxis(1)*sensitivity, stick->GetRawAxis(0)*sensitivity);
 	} else if (!drivetrain->isInUse) {

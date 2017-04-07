@@ -18,9 +18,9 @@ void TurnByAngle::Execute() {
 	if ((gyroTarget > gyroStart&&drivetrain->GetGyroAngle() < gyroTarget)||(gyroTarget < gyroStart&&drivetrain->GetGyroAngle() > gyroTarget)) {
 		drivetrain->controlsSwapped = false;
 		if (degrees > 0) {
-			drivetrain->Drive(0.0, -0.52);
+			drivetrain->Drive(0.0, -0.6);
 		} else {
-			drivetrain->Drive(0.0, 0.52);
+			drivetrain->Drive(0.0, 0.6);
 		}
 	} else {
 		drivetrain->Drive(0.0, 0.0);

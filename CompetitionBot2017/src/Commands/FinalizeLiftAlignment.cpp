@@ -9,6 +9,7 @@ FinalizeLiftAlignment::FinalizeLiftAlignment() {
 // Called just before this Command runs the first time
 void FinalizeLiftAlignment::Initialize() {
 	drivetrain->controlsSwapped = false;
+	drivetrain->isTargetting = true;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -18,18 +19,18 @@ void FinalizeLiftAlignment::Execute() {
 	double a = 0.0;// even more, buy one get one free
 	if (drivetrain->targetFound) {
 		if (drivetrain->targetCenter < -5.0) {
-			s = 0.45;// setting the variable 
+			s = 0.50;// setting the variable
 			a = 0.05;//buy one varible set get one free
 		} else if (drivetrain->targetCenter > 5.0) {
-			s = -0.45;//and a switchy
+			s = -0.50;//and a switchy
 			a = 0.05;//see we inversed the power
 		}
 		if (drivetrain->targetRange > 5.0) {
-			a += 0.47;
+			a += 0.50;
 		} else {
 			a = 0.0;
 		}
-		drivetrain->Drive(a, s);
+		drivetrain->Drive(a, s-0.2);
 
 	}
 }
@@ -45,6 +46,7 @@ bool FinalizeLiftAlignment::IsFinished() {
 void FinalizeLiftAlignment::End() {
 	drivetrain->Drive(0.0, 0.0);
 	drivetrain->isInUse = false;
+	drivetrain->isTargetting = false;
 }
 
 // Called when another command which requires one or more of the same
