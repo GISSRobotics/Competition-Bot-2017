@@ -12,16 +12,16 @@ void PlaceGear::Initialize() {
 	if (drivetrain->targetFound&&drivetrain->targetRange<5.0) {
 		drivetrain->isInUse = true;
 		gearsleeve->Raise();
-		frc::Wait(1.0);
 	}
 }
 
 // Called repeatedly when this Command is scheduled to run
 void PlaceGear::Execute() {
+	gearsleeve->Update();
 	if (drivetrain->targetRange < 0.5) {
-		drivetrain->Drive(0.0, 0.0);
+		drivetrain->ManualDrive(0.0, 0.0);
 	} else {
-		drivetrain->Drive(0.5, 0.0);
+		drivetrain->ManualDrive(0.25, 0.3);
 	}
 }
 

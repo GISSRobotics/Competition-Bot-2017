@@ -125,6 +125,9 @@ public:
 	void RobotInit() override {
 		std::thread visionThread(VisionThread);
 		visionThread.detach();
+		CommandBase::drivetrain->Initialize();
+		CommandBase::gearsleeve->Initialize();
+		CommandBase::winch->Initialize();
 	}
 
 	/**

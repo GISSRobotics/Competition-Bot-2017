@@ -8,6 +8,17 @@ void GearSleeve::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
 }
+
+void GearSleeve::Initialize() {
+	if (!definedYet) {
+		loadedSwitch = new frc::DigitalInput(GEAR_STATUS_SWITCH);
+		gearMotor = new frc::VictorSP(GEAR_MOTOR);
+		upLimit = new frc::Counter(GEAR_LIMIT_SWITCH_UP);
+		downLimit = new frc::DigitalInput(GEAR_LIMIT_SWITCH_DOWN);
+		definedYet = true;
+	}
+}
+
 //Toggle current gear sleeve state and update Dashboard
 void GearSleeve::Toggle() {
 	isUp = !isUp;
@@ -22,14 +33,6 @@ void GearSleeve::Raise() {
 }
 
 bool GearSleeve::Update() {
-	//If not defined, define variables
-	if (!definedYet) {
-		loadedSwitch = new frc::DigitalInput(GEAR_STATUS_SWITCH);
-		gearMotor = new frc::VictorSP(GEAR_MOTOR);
-		upLimit = new frc::Counter(GEAR_LIMIT_SWITCH_UP);
-		downLimit = new frc::DigitalInput(GEAR_LIMIT_SWITCH_DOWN);
-		definedYet = true;
-	}
 	//Updates variables and dashboard
 	isLoaded = !loadedSwitch->Get();
 	frc::SmartDashboard::PutBoolean("Gear Loaded?", isLoaded);

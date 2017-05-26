@@ -15,6 +15,7 @@ private:
 	double inches;// definitions
 	double encoderStart;//even more
 	double encoderTarget;
+	double gyroTarget;
 };
 
 #endif  // DriveByDistance_H

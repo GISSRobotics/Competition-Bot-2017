@@ -13,6 +13,7 @@ private:
 	bool definedYet = false;
 public:
 	Winch();
+	void Initialize();
 	void InitDefaultCommand();
 	void SetMotorPower(double power);
 	void Reset();

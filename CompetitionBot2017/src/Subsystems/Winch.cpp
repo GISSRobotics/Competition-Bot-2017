@@ -9,11 +9,14 @@ void Winch::InitDefaultCommand() {
 	//SetDefaultCommand(new ClimbRope());
 }
 
-void Winch::SetMotorPower(double power) {
+void Winch::Initialize() {
 	if (!definedYet) {
 		winchMotor = new frc::VictorSP(WINCH_MOTOR);
 		definedYet = true;
 	}
+}
+
+void Winch::SetMotorPower(double power) {
 	winchMotor->Set(-power);
 	frc::SmartDashboard::PutNumber("Winch Power", power);
 }

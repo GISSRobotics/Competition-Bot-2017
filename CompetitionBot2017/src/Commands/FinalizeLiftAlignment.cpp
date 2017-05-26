@@ -15,6 +15,15 @@ void FinalizeLiftAlignment::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void FinalizeLiftAlignment::Execute() {
 	drivetrain->isInUse = true;
+	if (drivetrain->targetRange > 10.0) {
+		double ts = 0.3;
+		double err = drivetrain->targetCenter/200.0;
+		drivetrain->ManualDrive(ts+err, ts-err);
+	} else {
+		drivetrain->ManualDrive(0.0, 0.0);
+	}
+
+	/*
 	double s = 0.0;// lookie its a definition
 	double a = 0.0;// even more, buy one get one free
 	if (drivetrain->targetFound) {
@@ -26,13 +35,13 @@ void FinalizeLiftAlignment::Execute() {
 			a = 0.05;//see we inversed the power
 		}
 		if (drivetrain->targetRange > 5.0) {
-			a += 0.50;
+			a += 0.35;
 		} else {
 			a = 0.0;
 		}
-		drivetrain->Drive(a, s-0.2);
-
+		drivetrain->Drive(a, s+0.08);
 	}
+	*/
 }
 
 // Make this return true when this Command no longer needs to run execute()

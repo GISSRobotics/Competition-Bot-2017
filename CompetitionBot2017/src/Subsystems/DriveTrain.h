@@ -24,7 +24,9 @@ public:
 	volatile double targetCenter = 0.0;
 	DriveTrain();
 	void InitDefaultCommand();
+	void Initialize();
 	void Drive(double acceleration, double steering);
+	void ManualDrive(double left, double right);
 	void SwapControls();
 	double GetEncoderAverageDistance();
 	double GetGyroAngle();

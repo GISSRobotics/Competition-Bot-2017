@@ -23,6 +23,7 @@ private:
 	frc::DigitalInput* downLimit;
 public:
 	GearSleeve();
+	void Initialize();
 	void InitDefaultCommand();
 	void Toggle();
 	void Raise();

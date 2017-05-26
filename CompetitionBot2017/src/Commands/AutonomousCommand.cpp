@@ -22,16 +22,19 @@ AutonomousCommand::AutonomousCommand(int id) {
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
-	AddSequential(new DriveByDistance(70.0));
+	double dist = 76.0;
 
-	if (id == 1) {//fun fact these are defined in the include statements
-		AddSequential(new TurnByAngle(30.0));//all of this is just taking the stuff we've defined the .h things and using it
-		AddSequential(new DriveByDistance(10.0));
+	if (id == 2) {
+		dist = 68.0;
+	}
+
+	AddSequential(new DriveByDistance(dist));
+
+	if (id == 1) {
+		AddSequential(new TurnByAngle(48.0));
 	} else if (id == 3) {
-		AddSequential(new TurnByAngle(-30.0));
-		AddSequential(new DriveByDistance(10.0));
+		AddSequential(new TurnByAngle(-48.0));
 	}
 
 	AddSequential(new FullAutoPlaceGear());
-
 }

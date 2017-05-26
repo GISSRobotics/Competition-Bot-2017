@@ -11,19 +11,20 @@ void DriveByDistance::Initialize() {
 	drivetrain->isInUse = true;//it is using the drive train
 	encoderStart = drivetrain->GetEncoderAverageDistance();//start using the encoders to get the avarge distance
 	encoderTarget = encoderStart + inches;// mesurin that distance in inches
+	// Uncomment for better straigtness - needs testing!
+	gyroTarget = drivetrain->GetGyroAngle();
+
 }
 
 // Called repeatedly when this Command is scheduled to run
 void DriveByDistance::Execute() {
-	if (drivetrain->GetEncoderAverageDistance() < encoderTarget) {//starts using the encoder to go the target distance
-		drivetrain->controlsSwapped = false;// the controls in drivetrain are not inverted
-		if (inches > 0) {//
-			drivetrain->Drive(0.55, 0.3);//sets the speed
-		} else {
-			drivetrain->Drive(-0.55, 0.3);//same thing
-		}
-	} else {
-		drivetrain->Drive(0.0, 0.0);//once again same thing
+	// TO IMPLEMENT: Uncomment for better straigtness - needs testing!
+	if (drivetrain->GetEncoderAverageDistance() < encoderTarget) {
+		double ts = 0.30;
+		double err = (drivetrain->GetGyroAngle()-gyroTarget)/30.0;
+		drivetrain->ManualDrive(ts-err, ts+err);
+	} else{
+		drivetrain->ManualDrive(0.0, 0.0);
 	}
 }
 
